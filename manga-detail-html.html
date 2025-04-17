@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MangaKoleksi - Detail Manga</title>
+  <style>
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+    
+    /* Header */
+    header {
+      background-color: #222;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 2px solid #444;
+    }
+    
+    .logo {
+      color: #e74c3c;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    nav {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+    
+    nav a:hover {
+      background-color: #555;
+      border-radius: 3px;
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    
+    .manga-detail {
+      background-color: #333;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .manga-cover-container {
+      width: 250px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .manga-cover {
+      width: 100%;
+      border-radius: 5px;
+    }
+    
+    .manga-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .manga-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #e74c3c;
+    }
+    
+    .manga-description {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .manga-metadata {
+      margin-bottom: 15px;
+    }
+    
+    .metadata-item {
+      margin-bottom: 5px;
+    }
+    
+    .manga-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 15px 0;
+    }
+    
+    .tag {
+      font-size: 12px;
+      background-color: #444;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+    
+    .button {
+      display: inline-block;
+      background-color: #e74c3c;
+      color: white;
+      text-align: center;
+      padding: 10px 15px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    
+    .button:hover {
+      background-color: #c0392b;
+    }
+    
+    /* Reader */
+    .manga-reader {
+      margin-top: 30px;
+    }
+    
+    .reader-controls {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .page-button {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    
+    .page-button:hover {
+      background-color: #555;
+    }
+    
+    .page-counter {
+      display: flex;
+      align-items: center;
+      margin: 0 15px;
+    }
+    
+    .manga-page-container {
+      text-align: center;
+      background-color: #000;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    
+    .manga-page {
+      max-width: 100%;
+      max-height: 80vh;
+    }
+    
+    /* Chapter List */
+    .chapter-list {
+      margin-top: 30px;
+      background-color: #333;
+      border-radius: 5px;
+      padding: 20px;
+    }
+    
+    .chapter-list-title {
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #444;
+    }
+    
+    .chapter-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #444;
+    }
+    
+    .chapter-item:last-child {
+      border-bottom: none;
+    }
+    
+    .chapter-item:hover {
+      background-color: #444;
+    }
+    
+    .chapter-link {
+      color: #f0f0f0;
+      text-decoration: none;
+    }
+    
+    .chapter-date {
+      color: #888;
+      font-size: 14px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #222;
+      margin-top: 30px;
+      color: #888;
+      font-size: 14px;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .manga-detail {
+        flex-direction: column;
+      }
+      
+      .manga-cover-container {
+        width: 200px;
+        margin: 0 auto 20px;
+      }
+      
+      .reader-controls {
+        flex-wrap: wrap;
+      }
+      
+      .page-counter {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">MangaKoleksi</a>
+  </header>
+  
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="#">Populer</a>
+    <a href="#">Terbaru</a>
+    <a href="#">Kategori</a>
+    <a href="#">Acak</a>
+  </nav>
+  
+  <div class="container">
+    <div class="manga-detail">
+      <div class="manga-cover-container">
+        <img class="manga-cover" src="https://via.placeholder.com/250x350" alt="Cover Manga" id="manga-cover">
+      </div>
+      
+      <div class="manga-info">
+        <h1 class="manga-title" id="manga-title">Judul Manga</h1>
+        
+        <div class="manga-metadata">
+          <div class="metadata-item"><strong>Penulis:</strong> <span id="manga-author">Nama Penulis</span></div>
+          <div class="metadata-item"><strong>Status:</strong> <span id="manga-status">Ongoing</span></div>
+          <div class="metadata-item"><strong>Terakhir Update:</strong> <span id="manga-update">15 April 2025</span></div>
+        </div>
+        
+        <div class="manga-description" id="manga-description">
+          Deskripsi manga akan muncul di sini. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Suspendisse euismod ante nec dolor sollicitudin, in consequat risus condimentum.
+        </div>
+        
+        <div class="manga-tags" id="manga-tags">
+          <span class="tag">Fantasi</span>
+          <span class="tag">Aksi</span>
+        </div>
+        
+        <a href="#manga-reader" class="button">Baca Sekarang</a>
+        <a href="#" class="button download-button" id="download-link">Download CBZ</a>
+      </div>
+    </div>
+    
+    <div class="chapter-list">
+      <h2 class="chapter-list-title">Daftar Chapter</h2>
+      
+      <div class="chapter-item">
+        <a href="#" class="chapter-link" onclick="loadChapter('1'); return false;">Chapter 1</a>
+        <span class="chapter-date">10 April 2025</span>
+      </div>
+      
+      <div class="chapter-item">
+        <a href="#" class="chapter-link" onclick="loadChapter('2'); return false;">Chapter 2</a>
+        <span class="chapter-date">12 April 2025</span>
+      </div>
+      
+      <div class="chapter-item">
+        <a href="#" class="chapter-link" onclick="loadChapter('3'); return false;">Chapter 3</a>
+        <span class="chapter-date">14 April 2025</span>
+      </div>
+    </div>
+    
+    <div class="manga-reader" id="manga-reader">
+      <div class="reader-controls">
+        <button class="page-button" id="prev-page">Halaman Sebelumnya</button>
+        <div class="page-counter">
+          Halaman <span id="current-page">1</span> dari <span id="total-pages">0</span>
+        </div>
+        <button class="page-button" id="next-page">Halaman Berikutnya</button>
+      </div>
+      
+      <div class="manga-page-container">
+        <img class="manga-page" id="manga-page" src="https://via.placeholder.com/800x1200" alt="Halaman Manga">
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    &copy; 2025 MangaKoleksi - Website koleksi manga online
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mendapatkan parameter ID dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const mangaId = urlParams.get('id');
+      
+      // Memuat data manga (dalam aplikasi nyata, ini akan mengambil data dari server)
+      loadMangaData(mangaId);
+      
+      // Untuk demo, kita akan menggunakan gambar statis
+      const mangaData = {
+        'NTR_Guild': {
+          title: 'NTR Guild',
+          author: 'Author NTR Guild',
+          status: 'Ongoing',
+          lastUpdate: '15 April 2025',
+          description: 'Cerita tentang guild petualang dengan intrik romansa dan pengkhianatan. Manga ini mengikuti perjalanan karakter utama saat bergabung dengan guild terkenal dan menghadapi berbagai tantangan.',
+          tags: ['Fantasi', 'Aksi', 'Romance', 'Drama'],
+          chapters: {
+            '1': {
+              title: 'Permulaan',
+              date: '10 April 2025',
+              pages: 5
+            },
+            '2': {
+              title: 'Pertemuan',
+              date: '12 April 2025',
+              pages: 5
+            },
+            '3': {
+              title: 'Konflik',
+              date: '14 April 2025',
+              pages: 5
+            }
+          }
+        }
+      };
+      
+      let currentManga = null;
+      let currentChapter = '1';
+      let currentPageIndex = 0;
+      let totalPages = 0;
+      
+      // Fungsi untuk memuat data manga
+      function loadMangaData(id) {
+        if (!id) {
+          id = 'NTR_Guild'; // Default jika tidak ada ID
+        }
+        
+        const manga = mangaData[id];
+        if (!manga) {
+          document.getElementById('manga-title').textContent = 'Manga tidak ditemukan';
+          return;
+        }
+        
+        currentManga = manga;
+        
+        document.getElementById('manga-title').textContent = manga.title;
+        document.getElementById('manga-author').textContent = manga.author;
+        document.getElementById('manga-status').textContent = manga.status;
+        document.getElementById('manga-update').textContent = manga.lastUpdate;
+        document.getElementById('manga-description').textContent = manga.description;
+        document.getElementById('manga-cover').src = `https://via.placeholder.com/250x350?text=${encodeURIComponent(manga.title)}`;
+        document.getElementById('download-link').href = `manga/${id}.cbz`;
+        
+        // Set tags
+        const tagsContainer = document.getElementById('manga-tags');
+        tagsContainer.innerHTML = '';
+        manga.tags.forEach(tag => {
+          const tagSpan = document.createElement('span');
+          tagSpan.className = 'tag';
+          tagSpan.textContent = tag;
+          tagsContainer.appendChild(tagSpan);
+        });
+        
+        // Set chapter list
+        const chapterList = document.querySelector('.chapter-list');
+        chapterList.innerHTML = '<h2 class="chapter-list-title">Daftar Chapter</h2>';
+        
+        Object.keys(manga.chapters).reverse().forEach(chapterNum => {
+          const chapter = manga.chapters[chapterNum];
+          const chapterItem = document.createElement('div');
+          chapterItem.className = 'chapter-item';
+          
+          const chapterLink = document.createElement('a');
+          chapterLink.className = 'chapter-link';
+          chapterLink.href = '#';
+          chapterLink.textContent = `Chapter ${chapterNum}: ${chapter.title}`;
+          chapterLink.onclick = function() {
+            loadChapter(chapterNum);
+            return false;
+          };
+          
+          const chapterDate = document.createElement('span');
+          chapterDate.className = 'chapter-date';
+          chapterDate.textContent = chapter.date;
+          
+          chapterItem.appendChild(chapterLink);
+          chapterItem.appendChild(chapterDate);
+          chapterList.appendChild(chapterItem);
+        });
+        
+        // Muat chapter default
+        loadChapter('1');
+      }
+      
+      // Fungsi untuk memuat chapter
+      function loadChapter(chapterNum) {
+        if (!currentManga || !currentManga.chapters[chapterNum]) {
+          return;
+        }
+        
+        currentChapter = chapterNum;
+        const chapter = currentManga.chapters[chapterNum];
+        totalPages = chapter.pages;
+        currentPageIndex = 0;
+        
+        document.getElementById('total-pages').textContent = totalPages;
+        
+        // Scroll ke reader
+        document.getElementById('manga-reader').scrollIntoView({ behavior: 'smooth' });
+        
+        // Update tampilan reader
+        updateReader();
+      }
+      
+      // Fungsi untuk memperbarui tampilan reader
+      function updateReader() {
+        document.getElementById('current-page').textContent = currentPageIndex + 1;
+        
+        // Generate URL untuk placeholder sesuai chapter dan halaman
+        const pageUrl = `https://via.placeholder.com/800x1200?text=Chapter+${currentChapter}+Page+${currentPageIndex + 1}`;
+        document.getElementById('manga-page').src = pageUrl;
+      }
+      
+      // Event listeners untuk tombol navigasi
+      document.getElementById('prev-page').addEventListener('click', function() {
+        if (currentPageIndex > 0) {
+          currentPageIndex--;
+          updateReader();
+        }
+      });
+      
+      document.getElementById('next-page').addEventListener('click', function() {
+        if (currentPageIndex < totalPages - 1) {
+          currentPageIndex++;
+          updateReader();
+        }
+      });
+      
+      // Navigasi dengan keyboard
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft' || e.key === 'a') {
+          if (currentPageIndex > 0) {
+            currentPageIndex--;
+            updateReader();
+          }
+        } else if (e.key === 'ArrowRight' || e.key === 'd') {
+          if (currentPageIndex < totalPages - 1) {
+            currentPageIndex++;
+            updateReader();
+          }
+        }
+      });
+      
+      // Assign loadChapter to global scope for chapter links
+      window.loadChapter = loadChapter;
+    });
+  </script>
+</body>
+</html>
