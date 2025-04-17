@@ -1,13 +1,349 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Situs Web Saya</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MangaKoleksi - Koleksi Manga Online</title>
+  <style>
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+    
+    /* Header */
+    header {
+      background-color: #222;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 2px solid #444;
+    }
+    
+    .logo {
+      color: #e74c3c;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    nav {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+    
+    nav a:hover {
+      background-color: #555;
+      border-radius: 3px;
+    }
+    
+    .search-container {
+      margin: 15px auto;
+      max-width: 600px;
+      display: flex;
+    }
+    
+    .search-container input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 3px 0 0 3px;
+    }
+    
+    .search-container button {
+      padding: 10px 15px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 0 3px 3px 0;
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    
+    .title {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #444;
+    }
+    
+    .manga-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    
+    .manga-card {
+      background-color: #333;
+      border-radius: 3px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    
+    .manga-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .manga-cover {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .manga-info {
+      padding: 10px;
+    }
+    
+    .manga-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    .manga-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 5px;
+    }
+    
+    .tag {
+      font-size: 11px;
+      background-color: #444;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .pagination a {
+      margin: 0 5px;
+      padding: 8px 12px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 3px;
+    }
+    
+    .pagination a.active {
+      background-color: #e74c3c;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #222;
+      margin-top: 30px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Selamat Datang di Situs Web Saya!</h1>
-    <p>Ini adalah situs web pertama saya menggunakan GitHub Pages.</p>
+  <header>
+    <a href="#" class="logo">MangaKoleksi</a>
+  </header>
+  
+  <nav>
+    <a href="#">Beranda</a>
+    <a href="#">Populer</a>
+    <a href="#">Terbaru</a>
+    <a href="#">Kategori</a>
+    <a href="#">Acak</a>
+  </nav>
+  
+  <div class="container">
+    <div class="search-container">
+      <input type="text" placeholder="Cari judul, tag, atau pembuat...">
+      <button type="submit">Cari</button>
+    </div>
     
-    <embed src="files/Screenshot_2025-04-17-21-15-44-912_com.android.chrome.jpg" type="application/pdf" width="100%" height="600px" />
-
+    <h2 class="title">Manga Terbaru</h2>
+    
+    <div class="manga-grid">
+      <!-- Manga Card 1 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Petualangan Fantasi</div>
+            <div class="manga-tags">
+              <span class="tag">Fantasi</span>
+              <span class="tag">Aksi</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 2 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Dunia Baru</div>
+            <div class="manga-tags">
+              <span class="tag">Sci-Fi</span>
+              <span class="tag">Petualangan</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 3 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Cinta dan Persahabatan</div>
+            <div class="manga-tags">
+              <span class="tag">Romantis</span>
+              <span class="tag">Slice of Life</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 4 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Pertarungan Terakhir</div>
+            <div class="manga-tags">
+              <span class="tag">Aksi</span>
+              <span class="tag">Supernatural</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 5 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Misteri Kota</div>
+            <div class="manga-tags">
+              <span class="tag">Misteri</span>
+              <span class="tag">Horror</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 6 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Legenda Pendekar</div>
+            <div class="manga-tags">
+              <span class="tag">Martial Arts</span>
+              <span class="tag">Historis</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 7 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Sekolah Sihir</div>
+            <div class="manga-tags">
+              <span class="tag">Fantasi</span>
+              <span class="tag">Sekolah</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 8 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Robot Masa Depan</div>
+            <div class="manga-tags">
+              <span class="tag">Sci-Fi</span>
+              <span class="tag">Mecha</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 9 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Rahasia Kerajaan</div>
+            <div class="manga-tags">
+              <span class="tag">Fantasi</span>
+              <span class="tag">Drama</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Manga Card 10 -->
+      <div class="manga-card">
+        <a href="#">
+          <img class="manga-cover" src="/api/placeholder/180/240" alt="Manga Cover">
+          <div class="manga-info">
+            <div class="manga-title">Kehidupan Sehari-hari</div>
+            <div class="manga-tags">
+              <span class="tag">Komedi</span>
+              <span class="tag">Slice of Life</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">&raquo;</a>
+    </div>
+  </div>
+  
+  <footer>
+    &copy; 2025 MangaKoleksi - Website koleksi manga online
+  </footer>
 </body>
-</html>
+    </html>
